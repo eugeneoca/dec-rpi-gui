@@ -59,7 +59,7 @@
            <widget class="QLabel" name="label">
             <property name="maximumSize">
              <size>
-              <width>70</width>
+              <width>90</width>
               <height>16777215</height>
              </size>
             </property>
@@ -106,7 +106,7 @@
            <widget class="QLabel" name="label_2">
             <property name="maximumSize">
              <size>
-              <width>60</width>
+              <width>80</width>
               <height>16777215</height>
              </size>
             </property>
@@ -140,6 +140,41 @@
           <enum>QFrame::Plain</enum>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="btn_start">
+            <property name="text">
+             <string>Start</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_stop">
+            <property name="text">
+             <string>Stop</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="QPushButton" name="btn_settings">
             <property name="maximumSize">

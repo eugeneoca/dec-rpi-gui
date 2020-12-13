@@ -20,6 +20,8 @@ class Main(QMainWindow, Ui_MainWindow):
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.showFullScreen()
         self.btn_settings.clicked.connect(self.show_Settings)
+        self.btn_start.clicked.connect(self.start_process)
+        self.btn_stop.clicked.connect(self.stop_process)
         self.gv_pressure.setLabels(title='Pressure', left='Magnitude', bottom='Time (t)')
         self.gv_pressure.setAntialiasing(True)
         self.gv_flow.setLabels(title='Flow', left='Magnitude', bottom='Time (t)')
@@ -46,6 +48,12 @@ class Main(QMainWindow, Ui_MainWindow):
         volume_sensor.result_callback.connect(self.volume_listener)
         volume_sensor.start()
         self.process_pool.append(volume_sensor)
+
+    def start_process(self):
+        with open('temp/process_control.txt', 'w') as f: f.write("on")
+
+    def stop_process(self):
+        with open('temp/process_control.txt', 'w') as f: f.write("off")
 
     def show_Settings(self):
         self.window = QMainWindow()
