@@ -9,13 +9,16 @@ class Sensor(QThread):
     def run(self):
         while not self.stop_flag:
             time.sleep(0.1)
-            self.read()
-            if len(self.sensor_stack) < self.sensor_stack_count:
-                self.sensor_stack.append(self.current_reading)
-            else:
-                del self.sensor_stack[0]
-                self.sensor_stack.append(self.current_reading)
-            self.result_callback.emit(self.sensor_stack)
+            try:
+                self.read()
+                if len(self.sensor_stack) < self.sensor_stack_count:
+                    self.sensor_stack.append(self.current_reading)
+                else:
+                    del self.sensor_stack[0]
+                    self.sensor_stack.append(self.current_reading)
+                self.result_callback.emit(self.sensor_stack)
+            except:
+                pass
 
     def setup(self):
         self.sensor_stack_count = 100
