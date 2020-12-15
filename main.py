@@ -22,12 +22,23 @@ class Main(QMainWindow, Ui_MainWindow):
         self.btn_settings.clicked.connect(self.show_Settings)
         self.btn_start.clicked.connect(self.start_process)
         self.btn_stop.clicked.connect(self.stop_process)
+
+        # Graph Elements
         self.gv_pressure.setLabels(title='Pressure', left='Magnitude', bottom='Time (t)')
         self.gv_pressure.setAntialiasing(True)
+        self.gv_pressure.setRange(yRange=[0,15])
+
         self.gv_flow.setLabels(title='Flow', left='Magnitude', bottom='Time (t)')
+        self.gv_flow.setAntialiasing(True)
+        self.gv_flow.setRange(yRange=[0,30])
+
         self.gv_volume.setLabels(title='Volume', left='Magnitude', bottom='Time (t)')
+        self.gv_volume.setAntialiasing(True)
+        self.gv_volume.setRange(yRange=[0,800])
+
         self.refresh_display()
         
+        # Thread Instances
         pressure_sensor = Sensor(self)
         pressure_sensor.setup()
         pressure_sensor.set_path("temp/pressure.txt")
@@ -62,6 +73,21 @@ class Main(QMainWindow, Ui_MainWindow):
         self.window.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.window.showFullScreen()
         self.form_settingsProperties.btn_save_changes.clicked.connect(self.save_settings)
+
+        with open('temp/mode.txt', 'r') as f: self.form_settingsProperties.cmb_mode.setCurrentText(f.read().title())
+
+        with open('temp/tidal_volume.txt', 'r') as f: self.form_settingsProperties.txt_volume.setValue(int(f.read()))
+
+        with open('temp/resp_rate.txt', 'r') as f: self.form_settingsProperties.txt_resp_rate.setValue(int(f.read()))
+
+        with open('temp/ie_ratio.txt', 'r') as f: self.form_settingsProperties.txt_ieratio.setValue(int(f.read()))
+
+        with open('temp/peak_flow.txt', 'r') as f: self.form_settingsProperties.txt_flow.setValue(int(f.read()))
+
+        with open('temp/peep.txt', 'r') as f: self.form_settingsProperties.txt_peep.setValue(int(f.read()))
+
+        with open('temp/fio2.txt', 'r') as f: self.form_settingsProperties.txt_fio2.setValue(int(f.read()))
+
         self.window.show()
 
     def save_settings(self):
