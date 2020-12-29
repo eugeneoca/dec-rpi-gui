@@ -3,3 +3,4 @@ __pycache__
 docs
 ui/__pycache__
 ui/*old.py
+config.env
