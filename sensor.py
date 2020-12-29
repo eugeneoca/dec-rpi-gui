@@ -10,7 +10,7 @@ class Sensor(QThread):
     def run(self):
         
         while not self.stop_flag:
-            time.sleep(0.1) # 100ms
+            time.sleep(0.5) # 500ms
             try:
                 self.read()
                 if len(self.sensor_stack) < self.sensor_stack_count:
@@ -27,7 +27,7 @@ class Sensor(QThread):
                 pass
 
     def setup(self):
-        self.sensor_stack_count = 200
+        self.sensor_stack_count = 100
         self.sensor_stack = []
         self.time_stack = []
         self.stop_flag = False
