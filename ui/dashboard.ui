@@ -761,7 +761,7 @@ background-color: #E5E5E5;</string>
         <number>5</number>
        </property>
        <item>
-        <widget class="QFrame" name="frame_4">
+        <widget class="QFrame" name="alarm_color">
          <property name="maximumSize">
           <size>
            <width>150</width>
@@ -793,7 +793,7 @@ background-color: rgb(252, 163, 17);</string>
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_4">
+           <widget class="QLabel" name="alarm_status">
             <property name="styleSheet">
              <string notr="true">font: 25 14pt &quot;Segoe UI Light&quot; bold;
 border-radius: 5px;
