@@ -252,12 +252,11 @@ class Main(QMainWindow, Ui_MainWindow):
 
     @pyqtSlot(object, object)
     def th_uptime_listener(self, reading, other):
-        # with open(env("UPTIME_PATH"), 'w+') as f: f.write(str(reading))
-        total_seconds = reading/2 # 1*500 = 500 second
-        hours = int(total_seconds/3600.0) # ceil(500/3600) = 1 hour
-        total_seconds -= hours*3600.0 # 3666 - 1hr*3600s/hr = 66 seconds
-        minutes = int(total_seconds/60.0) # ceil(66/60) = 1minute
-        total_seconds -= minutes*60.0 # 66 - 1min*60s/min = 6 seconds
+        total_seconds = reading/2
+        hours = int(total_seconds/3600.0)
+        total_seconds -= hours*3600.0
+        minutes = int(total_seconds/60.0)
+        total_seconds -= minutes*60.0
         seconds = total_seconds
         self.lbl_runtime.setText(f'{int(hours):02.0f}:{int(minutes):02.0f}:{int(seconds):02.0f}')
 
