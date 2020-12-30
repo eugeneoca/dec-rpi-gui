@@ -110,6 +110,8 @@ class Main(QMainWindow, Ui_MainWindow):
         th_uptime.set_path(env("UPTIME_PATH"))
         th_uptime.for_timestamp(True)
         th_uptime.set_recording(False)
+        th_uptime.freeze()
+        th_uptime.set_name("uptime")
         th_uptime.result_callback.connect(self.th_uptime_listener)
         th_uptime.start()
         self.process_pool.append(th_uptime)
@@ -128,9 +130,18 @@ class Main(QMainWindow, Ui_MainWindow):
 
     def start_process(self):
         with open(env("PROCESS_CONTROL_PATH"), 'w+') as f: f.write("on")
+        for proc in self.process_pool:
+            if proc.get_name()=="uptime":
+                proc.unfreeze()
+                break
+        
 
     def stop_process(self):
         with open(env("PROCESS_CONTROL_PATH"), 'w+') as f: f.write("off")
+        for proc in self.process_pool:
+            if proc.get_name()=="uptime":
+                proc.freeze()
+                break
 
     def show_Settings(self):
         self.window = QMainWindow()

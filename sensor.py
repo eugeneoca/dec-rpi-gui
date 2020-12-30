@@ -11,6 +11,8 @@ class Sensor(QThread):
         
         while not self.stop_flag:
             time.sleep(0.5) # 500ms
+            if self.is_paused:
+                continue
             try:
                 if self.recording:
                     self.read()
@@ -46,15 +48,29 @@ class Sensor(QThread):
         self.t_elapse = 0
         self.time_is_data = False
         self.recording = True
+        self.is_paused = False
+        self.name = ""
 
     def set_recording(self, state):
         self.recording = state
+
+    def set_name(self, name):
+        self.name = name
+
+    def get_name(self):
+        return self.name
 
     def set_path(self, path):
         self.path = path
 
     def for_timestamp(self, state):
         self.time_is_data=True
+
+    def freeze(self):
+        self.is_paused = True
+
+    def unfreeze(self):
+        self.is_paused = False
 
     def timestamp(self):
         self.t_elapse += 1 # 500 ms per call
