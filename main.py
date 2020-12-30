@@ -11,6 +11,7 @@ import settings as form_settings
 from helper import *
 from pyqtgraph import *
 import time
+import math
 
 
 class Main(QMainWindow, Ui_MainWindow):
@@ -103,13 +104,16 @@ class Main(QMainWindow, Ui_MainWindow):
         th_alarm_status.result_callback.connect(self.th_alarm_status_listener)
         th_alarm_status.start()
         self.process_pool.append(th_alarm_status)
-        """
-        with open(env("PEAK_PRESSURE_PATH"), 'r') as f: self.lbl_pressure_peak.setText(f'{f.read()}')
-            with open(env("P_PLATEAU_PATH"), 'r') as f: self.lbl_p_plateau.setText(f'{f.read()}')
 
-            with open(env("ALARM_COLOR_PATH"), 'r') as f: self.alarm_color.setStyleSheet("border-radius: 3px;\nbackground-color: rgb("+f.read()+");")
-            with open(env("ALARM_STATUS_PATH"), 'r') as f: self.alarm_status.setText(f'{f.read()}')
-        """
+        th_uptime = Sensor(self)
+        th_uptime.setup()
+        th_uptime.set_path(env("UPTIME_PATH"))
+        th_uptime.for_timestamp(True)
+        th_uptime.set_recording(False)
+        th_uptime.result_callback.connect(self.th_uptime_listener)
+        th_uptime.start()
+        self.process_pool.append(th_uptime)
+        
 
 
     def run_process(self):
@@ -234,6 +238,17 @@ class Main(QMainWindow, Ui_MainWindow):
     @pyqtSlot(object, object)
     def th_alarm_status_listener(self, reading, other):
         self.alarm_status.setText(reading)
+
+    @pyqtSlot(object, object)
+    def th_uptime_listener(self, reading, other):
+        # with open(env("UPTIME_PATH"), 'w+') as f: f.write(str(reading))
+        total_seconds = reading/2 # 1*500 = 500 second
+        hours = int(total_seconds/3600.0) # ceil(500/3600) = 1 hour
+        total_seconds -= hours*3600.0 # 3666 - 1hr*3600s/hr = 66 seconds
+        minutes = int(total_seconds/60.0) # ceil(66/60) = 1minute
+        total_seconds -= minutes*60.0 # 66 - 1min*60s/min = 6 seconds
+        seconds = total_seconds
+        self.lbl_runtime.setText(f'{int(hours):02.0f}:{int(minutes):02.0f}:{int(seconds):02.0f}')
 
     def closeEvent(self, event):
         for process in self.process_pool:
