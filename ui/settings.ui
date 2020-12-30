@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>723</width>
-    <height>590</height>
+    <width>837</width>
+    <height>695</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -136,7 +136,7 @@ font: 75 11pt &quot;Segoe UI&quot;;
 margin-top: 15px;</string>
         </property>
         <property name="text">
-         <string>Tidal Volume</string>
+         <string>Tidal Volume(mL)</string>
         </property>
        </widget>
       </item>
@@ -164,7 +164,7 @@ font: 75 11pt &quot;Segoe UI&quot;;</string>
            <bool>false</bool>
           </property>
           <property name="suffix">
-           <string> mL</string>
+           <string/>
           </property>
           <property name="minimum">
            <number>250</number>
@@ -184,7 +184,7 @@ font: 75 11pt &quot;Segoe UI&quot;;
 margin-top: 15px;</string>
         </property>
         <property name="text">
-         <string>Respiratory Rate</string>
+         <string>Respiratory Rate(BPM)</string>
         </property>
        </widget>
       </item>
@@ -206,7 +206,7 @@ font: 75 11pt &quot;Segoe UI&quot;;</string>
            <set>Qt::AlignCenter</set>
           </property>
           <property name="suffix">
-           <string> Bpm</string>
+           <string/>
           </property>
           <property name="minimum">
            <number>10</number>
@@ -271,7 +271,7 @@ font: 75 11pt &quot;Segoe UI&quot;;
 margin-top: 15px;</string>
         </property>
         <property name="text">
-         <string>Peak Flow</string>
+         <string>Peak Flow(Lpm)</string>
         </property>
        </widget>
       </item>
@@ -293,7 +293,7 @@ font: 75 11pt &quot;Segoe UI&quot;;</string>
            <set>Qt::AlignCenter</set>
           </property>
           <property name="suffix">
-           <string> Lpm</string>
+           <string/>
           </property>
           <property name="minimum">
            <number>10</number>
@@ -313,7 +313,7 @@ font: 75 11pt &quot;Segoe UI&quot;;
 margin-top: 15px;</string>
         </property>
         <property name="text">
-         <string>PEEP</string>
+         <string>PEEP(cmH2O)</string>
         </property>
        </widget>
       </item>
@@ -335,7 +335,7 @@ font: 75 11pt &quot;Segoe UI&quot;;</string>
            <set>Qt::AlignCenter</set>
           </property>
           <property name="suffix">
-           <string> cmH2O</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>10</number>
@@ -352,7 +352,7 @@ font: 75 11pt &quot;Segoe UI&quot;;
 margin-top: 15px;</string>
         </property>
         <property name="text">
-         <string>FiO2</string>
+         <string>FiO2(%)</string>
         </property>
        </widget>
       </item>
@@ -374,7 +374,7 @@ font: 75 11pt &quot;Segoe UI&quot;;</string>
            <set>Qt::AlignCenter</set>
           </property>
           <property name="suffix">
-           <string> %</string>
+           <string/>
           </property>
           <property name="maximum">
            <number>100</number>
