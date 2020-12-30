@@ -111,6 +111,13 @@ class Main(QMainWindow, Ui_MainWindow):
         th_uptime.result_callback.connect(self.th_uptime_listener)
         th_uptime.start()
         self.process_pool.append(th_uptime)
+
+        th_entry_update = Sensor(self)
+        th_entry_update.setup()
+        th_entry_update.as_proceedure()
+        th_entry_update.result_callback.connect(self.th_entry_update_listener)
+        th_entry_update.start()
+        self.process_pool.append(th_entry_update)
         
 
 
@@ -213,6 +220,10 @@ class Main(QMainWindow, Ui_MainWindow):
         with open(env("PEAK_FLOW_PATH", entry=True), 'r') as f: self.lbl_flow.setText(f'{f.read()}')
         with open(env("PEEP_PATH", entry=True), 'r') as f: self.lbl_peep.setText(f'{f.read()}')
         with open(env("FIO2_PATH"), 'r') as f: self.lbl_fio2.setText(f'{f.read()}%')
+
+    @pyqtSlot(object, object)
+    def th_entry_update_listener(self, **args):
+        self.refresh_display()
         
     @pyqtSlot(object, object)
     def pressure_listener(self, pressure_stack, time_stack):

@@ -13,6 +13,10 @@ class Sensor(QThread):
             time.sleep(0.5) # 500ms
             if self.is_paused:
                 continue
+
+            if self.process_only:
+                self.result_callback.emit(None, None)
+                continue
             try:
                 if self.recording:
                     self.read()
@@ -50,12 +54,16 @@ class Sensor(QThread):
         self.recording = True
         self.is_paused = False
         self.name = ""
+        self.process_only = False
 
     def set_recording(self, state):
         self.recording = state
 
     def set_name(self, name):
         self.name = name
+
+    def as_proceedure(self):
+        self.process_only=True
 
     def get_name(self):
         return self.name
