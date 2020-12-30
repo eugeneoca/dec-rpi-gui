@@ -69,10 +69,6 @@ class Main(QMainWindow, Ui_MainWindow):
         volume_sensor.start()
         self.process_pool.append(volume_sensor)
 
-        # Thread for semi-realtime gui update !Note: dont add on process pool(for sensors only)
-        #display_refresh_th = QThread(target=self.realtime_refresh_display, name="GUI Update")
-        #display_refresh_th.start()
-
         peak_pressure = Sensor(self)
         peak_pressure.setup()
         peak_pressure.set_path(env("PEAK_PRESSURE_PATH"))
@@ -211,11 +207,11 @@ class Main(QMainWindow, Ui_MainWindow):
 
     def refresh_display(self):
         with open(env("MODE_PATH"), 'r') as f: self.lbl_mode.setText(f.read().title())
-        with open(env("TIDAL_PATH"), 'r') as f: self.lbl_tidal_volume.setText(f'{f.read()}')
+        with open(env("TIDAL_PATH", entry=True), 'r') as f: self.lbl_tidal_volume.setText(f'{f.read()}')
         with open(env("RESP_RATE_PATH"), 'r') as f: self.lbl_resp_rate.setText(f'{f.read()}')
         with open(env("IERATIO_PATH"), 'r') as f: self.lbl_ieratio.setText(f'1:{f.read()}')
-        with open(env("PEAK_FLOW_PATH"), 'r') as f: self.lbl_flow.setText(f'{f.read()}')
-        with open(env("PEEP_PATH"), 'r') as f: self.lbl_peep.setText(f'{f.read()}')
+        with open(env("PEAK_FLOW_PATH", entry=True), 'r') as f: self.lbl_flow.setText(f'{f.read()}')
+        with open(env("PEEP_PATH", entry=True), 'r') as f: self.lbl_peep.setText(f'{f.read()}')
         with open(env("FIO2_PATH"), 'r') as f: self.lbl_fio2.setText(f'{f.read()}%')
         
     @pyqtSlot(object, object)
