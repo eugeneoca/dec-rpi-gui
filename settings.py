@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(723, 590)
+        MainWindow.resize(837, 695)
         MainWindow.setStyleSheet("")
         MainWindow.setDocumentMode(False)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -80,6 +80,7 @@ class Ui_MainWindow(object):
         self.txt_tidal_volume.setFrame(False)
         self.txt_tidal_volume.setAlignment(QtCore.Qt.AlignCenter)
         self.txt_tidal_volume.setProperty("showGroupSeparator", False)
+        self.txt_tidal_volume.setSuffix("")
         self.txt_tidal_volume.setMinimum(250)
         self.txt_tidal_volume.setMaximum(800)
         self.txt_tidal_volume.setObjectName("txt_tidal_volume")
@@ -98,6 +99,7 @@ class Ui_MainWindow(object):
         self.txt_resprate.setStyleSheet("background-color: rgb(229, 229, 229);\n"
 "font: 75 11pt \"Segoe UI\";")
         self.txt_resprate.setAlignment(QtCore.Qt.AlignCenter)
+        self.txt_resprate.setSuffix("")
         self.txt_resprate.setMinimum(10)
         self.txt_resprate.setMaximum(30)
         self.txt_resprate.setObjectName("txt_resprate")
@@ -135,6 +137,7 @@ class Ui_MainWindow(object):
         self.txt_peakflow.setStyleSheet("background-color: rgb(229, 229, 229);\n"
 "font: 75 11pt \"Segoe UI\";")
         self.txt_peakflow.setAlignment(QtCore.Qt.AlignCenter)
+        self.txt_peakflow.setSuffix("")
         self.txt_peakflow.setMinimum(10)
         self.txt_peakflow.setMaximum(50)
         self.txt_peakflow.setObjectName("txt_peakflow")
@@ -153,6 +156,7 @@ class Ui_MainWindow(object):
         self.txt_peep.setStyleSheet("background-color: rgb(229, 229, 229);\n"
 "font: 75 11pt \"Segoe UI\";")
         self.txt_peep.setAlignment(QtCore.Qt.AlignCenter)
+        self.txt_peep.setSuffix("")
         self.txt_peep.setMaximum(10)
         self.txt_peep.setObjectName("txt_peep")
         self.horizontalLayout_6.addWidget(self.txt_peep)
@@ -170,6 +174,7 @@ class Ui_MainWindow(object):
         self.txt_fio2.setStyleSheet("background-color: rgb(229, 229, 229);\n"
 "font: 75 11pt \"Segoe UI\";")
         self.txt_fio2.setAlignment(QtCore.Qt.AlignCenter)
+        self.txt_fio2.setSuffix("")
         self.txt_fio2.setMaximum(100)
         self.txt_fio2.setObjectName("txt_fio2")
         self.horizontalLayout_7.addWidget(self.txt_fio2)
@@ -209,17 +214,12 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "Mode"))
         self.btn_assist.setText(_translate("MainWindow", "Assist"))
         self.btn_control.setText(_translate("MainWindow", "Control"))
-        self.label_2.setText(_translate("MainWindow", "Tidal Volume"))
-        self.txt_tidal_volume.setSuffix(_translate("MainWindow", " mL"))
-        self.label_3.setText(_translate("MainWindow", "Respiratory Rate"))
-        self.txt_resprate.setSuffix(_translate("MainWindow", " Bpm"))
+        self.label_2.setText(_translate("MainWindow", "Tidal Volume(mL)"))
+        self.label_3.setText(_translate("MainWindow", "Respiratory Rate(BPM)"))
         self.label_4.setText(_translate("MainWindow", "I:E Ratio"))
         self.txt_ieratio.setPrefix(_translate("MainWindow", "1:"))
-        self.label_5.setText(_translate("MainWindow", "Peak Flow"))
-        self.txt_peakflow.setSuffix(_translate("MainWindow", " Lpm"))
-        self.label_6.setText(_translate("MainWindow", "PEEP"))
-        self.txt_peep.setSuffix(_translate("MainWindow", " cmH2O"))
-        self.label_7.setText(_translate("MainWindow", "FiO2"))
-        self.txt_fio2.setSuffix(_translate("MainWindow", " %"))
+        self.label_5.setText(_translate("MainWindow", "Peak Flow(Lpm)"))
+        self.label_6.setText(_translate("MainWindow", "PEEP(cmH2O)"))
+        self.label_7.setText(_translate("MainWindow", "FiO2(%)"))
         self.btn_save.setText(_translate("MainWindow", "Save Changes"))
 import images_rc
