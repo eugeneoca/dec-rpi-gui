@@ -1,19 +1,19 @@
 import datetime
 from pyqtgraph import *
-from os.path import realpath, abspath, dirname
+from os.path import realpath, abspath, dirname, join
 import sys
 
 """
     Get environment setting
 """
 def env(parameter):
-    with open(abspath(dirname(realpath(__file__)))+'\\config.env', 'r') as env_file:
+    with open(join(abspath(dirname(realpath(__file__))),'config.env'), 'r') as env_file:
         environment_array = env_file.read().split("\n")
         for param in environment_array:
             param = param.replace(" ", "")
             p_specific = param.split("=")[0]
             if p_specific==parameter:
-                return abspath(dirname(realpath(__file__)))+"\\"+param.split("=")[1]
+                return join(abspath(dirname(realpath(__file__))),param.split("=")[1])
 
 class TimeAxisItem(AxisItem):
     def __init__(self, *args, **kwargs):
